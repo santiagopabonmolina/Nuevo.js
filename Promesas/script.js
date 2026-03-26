@@ -5,7 +5,7 @@
 
     async function cargarEstudiantes() {
 
-        contenedor.innerHTML = '';
+        contenedor.setHTML = '';
         estado.textContent = 'Cargando estudiantes...';
         
 
@@ -31,7 +31,7 @@
                 est.promedio >= 3.5 ? 'promedio-medio' :
                 'promedio-bajo';
 
-                tarjeta.innerHTML = `
+                tarjeta.setHTML = `
                 <img src="${est.foto}" alt="${est.nombre}">
                 <div class="info">
                     <h3>${est.nombre}</h3>
