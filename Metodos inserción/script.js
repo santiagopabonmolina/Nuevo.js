@@ -7,7 +7,7 @@ const completadasSpan = document.getElementById('completadas');
 
 btnAgregar.addEventListener('click', agregarTarea);
 
-function agregarTarea() {
+function agregarTarea(tarea) {
     const texto = input.value.trim();
 
     if (!texto || tareaExsite(texto)){
@@ -59,14 +59,53 @@ function agregarTarea() {
         const btnCompletar = li.querySelector('.btn-completar');
         const btnEliminar = li.querySelector('.btn-eliminar');
 
-        btnCompletar.addEventListener('click', () => toogleCompletar(li));
+        btnCompletar.addEventListener('click', () => toogleCompletada(li));
         btnEliminar.addEventListener('click', () => eliminarTarea(li));
+
+        actualizarContadores();
         
         
 }
 
 function tareaExsite(texto){
-    const tareas = Lista.querySelectorAll('li');
+    const tarea = Lista.querySelectorAll('li span');
 
-    return Array.from(tareas).some( el => el.textContent.toLowerCase() === texto.toLowerCase());                                    
+    return Array.from(tarea).some( span => span.textContent.toLowerCase() === texto.toLowerCase());                                    
 }
+
+function toogleCompletada(tarea){
+    tarea.classList.toggle('completada');
+
+    tarea.animate([
+        {transform: 'scale(1)' },
+        {transform: 'scale(1.02)' },
+        {transform: 'scale(1)' }
+    ],
+    {duration: 200})
+
+    actualizarContadores();
+ }
+
+ function eliminarTarea(tarea){
+    const animcaionSalida = tarea.animate([
+        {transform: 'scale(1)' },
+        {transform: 'scale(1.02)' },
+        {transform: 'scale(1)' }
+    ],
+    {duration: 200})
+
+    animcaionSalida.finished.then(() => { tarea.remove();
+    actualizarContadores();
+     });
+    
+ }
+
+ function actualizarContadores(){
+    const total = Lista.children.length; 
+
+    const completadas = Array.from(Lista.children).filter( li => li.classList.contains('completada')).length; 
+
+    totalSpan.textContent = total;
+    completadasSpan.textContent = completadas;
+
+ }
