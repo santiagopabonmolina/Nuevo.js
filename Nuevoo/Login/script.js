@@ -1,0 +1,81 @@
+const loginForm = document.getElementById('loginForm');
+const inputpassword = document.getElementById('password');
+const loginBtn = document.getElementById('loginBtn');
+const estado = document.getElementById('estado');
+const resultado = document.getElementById('resultado');
+
+const baseDatos = {
+    usuario: "admin123",
+    password: "Segura123!"
+}
+
+function validarUsuario(usuario) {
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            if(usuario.length < 4){
+                reject("El usuario debe tener mas de 3 caracteres");
+                }else if(usuario !== baseDatos.usuario){
+                    reject("Usuario no encontrado");
+                }else{
+                    resolve("Usuario correcto");                
+            }
+        },1500);
+    });
+
+} 
+
+function validarPassword(password){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            const segura = password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password);
+            if(!segura){
+                reject("La contraseña debe tener almenos una mayuscula, un numero y un caracter especial");
+            }else if (password !== baseDatos.password){
+                reject("Contraseña incorrecta");
+            }else{
+                resolve("contraseña verificada");
+            }
+        }, 2000);
+
+    });
+}
+
+loginForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+     
+    resultado.textContent = "";
+    resultado.className = "";
+    estado.textContent = "";
+
+    const usuario = document.getElementById('usuario').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!usuario || !password){
+        resultado.className = "error";
+        resultado.textContent = "Todos los campos son obligatorios.";
+        estado.textContent = "Por favor, completa todos los campos.";
+        return;
+    }
+    estado.textContent = "Verificando crendeciales...";
+
+    Promise.all([
+        validarUsuario(usuario),
+        validarPassword(password)
+    ]).then(([resUsuario, resPass])=>{
+        resultado.className = "success";
+        resultado.textContent = `✅ ${resUsuario}\n ✅ ${resPass}`;
+        estado.textContent = "Inicio de sesión exitoso.";
+
+        setTimeout(()=>{
+            window.location.href = "bienvenida.html";
+        }, 1000);
+        
+    }).catch((error)=>{
+        resultado.className = "error";
+        resultado.textContent = `❌ ${error}`;
+        estado.textContent = "❌ Error en el inicio de sesión.";
+    }).finally(()=>{
+        console.log("Proceso de autenticación finalizado.");
+    })
+
+})
