@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("https://i.pinimg.com/1200x/d4/c7/5f/d4c75f71f2f01ec68fc12b688205fbc9.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper {
+  background-color: transparent;
+  border: 0.125rem solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(0.9375rem);
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  width: 26.25rem;
+}
+
+.wrapper h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-logout {
+  width: 100%;
+  height: 2.8125rem;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 2.5rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.btn-logout:hover {
+  background: #f44336;
+  color: #fff;
+}
