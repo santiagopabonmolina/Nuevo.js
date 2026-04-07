@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6d1f22, #c76b51);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.palindromo {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.palindromo h2 {
+    margin-bottom: 1rem;
+}
+
+.palindromo input {
+    width: 100%;
+    padding: 0.7rem;
+    margin: 0.8rem 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.palindromo button {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+    background: #ff758c;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.palindromo button:hover {
+    background: #ff3f6c;
+}
+
+#resultado {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+#error {
+    margin-top: 1rem;
+    color: red;
+    font-weight: bold;
+}
