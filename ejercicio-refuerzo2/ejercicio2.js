@@ -12,11 +12,12 @@ formPalindromo.addEventListener('submit', async(e) =>{
     try{
         const mensaje = await comaprar(textoIngresado, palabrareversa);
 
-        resultado.className = ('resultado');
+        resultado.className = 'resultado';
         resultado.textContent = mensaje;
+
     }catch (error) {
-        resultado.className = ('error');
-        resultado.textContent = (`${error}`);
+        resultado.className = 'error';
+        resultado.textContent = error;
     }
 
 });
